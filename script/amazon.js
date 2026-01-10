@@ -25,7 +25,7 @@ products.forEach( (product) => {
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-quantity-selector-${product.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -41,12 +41,12 @@ products.forEach( (product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-name="${product.name}">
+          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
             Add to Cart
           </button>
         </div>
@@ -56,33 +56,58 @@ products.forEach( (product) => {
 document.querySelector('.js-product-grid').innerHTML = productsHTML;
 
 document.querySelectorAll('.js-add-to-cart').forEach( (button) => {
+  let addedVisibility = false;
+  let timeout;
   button.addEventListener( 'click', ()=> {
-    const productName = button.dataset.productName;
+    const productId = button.dataset.productId;
 
-    let matchingItem = '';
+    let matchingItem;
 
+    const quantitySelectedElement = document.querySelector(`.js-quantity-selector-${productId}`);
+    const quantitySelected = Number(quantitySelectedElement.value);
+    quantitySelectedElement.value = '1';
+    
     cart.forEach( (item) => {
-      if(item.productName === productName){
+      if(item.productId === productId){
         matchingItem = item;
       }
-    } )
+    } );
 
     if(matchingItem){
-      matchingItem.quantity++;
+      matchingItem.quantity += quantitySelected;
     } else {
-      cart.push({
-        productName: productName,
-        quantity: 1
-      });
+      cart.push( {
+        productId: productId,
+        quantity: quantitySelected
+      } );
     }
 
     let cartQuantity = 0;
 
-    cart.forEach((item)=>{
-      cartQuantity += item.quantity;
-    });
+    cart.forEach( (item)=>{
+      cartQuantity += (item.quantity);
+    } );
 
     document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 
+
+    const addedToCartElement = document.querySelector(`.js-added-to-cart-${productId}`);
+
+    
+    
+    if (!addedVisibility){
+      addedToCartElement.classList.add('visible');
+      addedVisibility = true;
+      timeout = setTimeout(()=>{
+        addedToCartElement.classList.remove('visible');
+        addedVisibility = false;
+      },2000);
+    } else {
+      clearTimeout(timeout);
+      timeout = setTimeout(()=>{
+        addedToCartElement.classList.remove('visible');
+        addedVisibility = false;
+      },2000);
+    }
   } );
 } );
