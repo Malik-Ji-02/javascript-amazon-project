@@ -51,3 +51,14 @@ export function deleteItem(productId){
   cart = newCart;
   saveToCart();
 }
+
+export function updateQuantity(productId, newQuantity){
+  cart.forEach((cartItem)=>{
+    if (newQuantity === ''){
+      return cart;
+    } else if(productId === cartItem.productId){
+      cartItem.quantity = newQuantity;
+    }
+  });
+  saveToCart();
+}

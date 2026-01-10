@@ -56,9 +56,11 @@ products.forEach( (product) => {
     `;
 } );
 
+updateCartQuantity();
+
 document.querySelector('.js-product-grid').innerHTML = productsHTML;
 
-function cartQuantity(){
+function updateCartQuantity(){
     let cartQuantity = 0;
 
     cart.forEach( (item)=>{
@@ -79,23 +81,24 @@ function addedToCart(productId){
       timeout = setTimeout(()=>{
         addedToCartElement.classList.remove('visible');
         addedVisibility = false;
-      },1000);
+      },500);
     } else {
       clearTimeout(timeout);
       timeout = setTimeout(()=>{
         addedToCartElement.classList.remove('visible');
         addedVisibility = false;
-      },1000);
+      },500);
     }
 }
 
 document.querySelectorAll('.js-add-to-cart').forEach( (button) => {
+  
   button.addEventListener( 'click', ()=> {
     const productId = button.dataset.productId;
 
     addToCart(productId);
 
-    cartQuantity();
+    updateCartQuantity();
 
     addedToCart(productId);
   } );
