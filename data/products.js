@@ -1,35 +1,5 @@
 export const products = [
   {
-    id: 'id1',
-    image: "images/products/backpack.jpg",
-    name: "Black WaterProff Backpack",
-    rating: {
-      stars: 4,
-      count: 196
-    },
-    priceCents: 1999,
-    keyWords: [
-      "backpack",
-      "waterproff",
-      "black"
-    ]
-  },
-  {
-    id: "id2",
-    image: "images/products/umbrella.jpg",
-    name: "Black Umbrella",
-    rating: {
-      stars: 5,
-      count: 74
-    },
-    priceCents: 389,
-    keywords: [
-      "umbrella",
-      "rainy",
-      "black"
-    ]
-  },
-  {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
     name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
@@ -686,5 +656,47 @@ export const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: 'id1',
+    image: "images/products/backpack.jpg",
+    name: "Black WaterProff Backpack",
+    rating: {
+      stars: 4,
+      count: 196
+    },
+    priceCents: 1999,
+    keyWords: [
+      "backpack",
+      "waterproff",
+      "black"
+    ]
+  },
+  {
+    id: "id2",
+    image: "images/products/umbrella.jpg",
+    name: "Black Umbrella",
+    rating: {
+      stars: 5,
+      count: 74
+    },
+    priceCents: 389,
+    keywords: [
+      "umbrella",
+      "rainy",
+      "black"
+    ]
   }
 ];
+
+export function getProduct(productId){
+  let matchingItem;
+
+  products.forEach( (product)=> {
+      if(product.id === productId){
+          matchingItem = product;
+      }
+  });
+
+  return matchingItem;
+}
