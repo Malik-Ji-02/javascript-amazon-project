@@ -723,7 +723,7 @@ export const products = [
   {
     id: 'id1',
     image: "images/products/backpack.jpg",
-    name: "Black WaterProff Backpack",
+    name: "Black WaterProof Backpack",
     rating: {
       stars: 4,
       count: 196
@@ -731,7 +731,7 @@ export const products = [
     priceCents: 1999,
     keyWords: [
       "backpack",
-      "waterproff",
+      "waterproof",
       "black"
     ]
   },
