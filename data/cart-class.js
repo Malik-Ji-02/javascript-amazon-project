@@ -106,10 +106,4 @@ class Cart {
     }
 }
 
-const cart = new Cart('cart-opp');
-
-console.log(cart);
-
-const businessCart = new Cart('cart-businesses');
-
-console.log(businessCart);
+const cart = new Cart('cart');

@@ -42,7 +42,7 @@ products.forEach( (product) => {
             </select>
           </div>
 
-          ${product.showSizeChart()}
+          ${product.extraInfo()}
 
           <div class="product-spacer"></div>
 
