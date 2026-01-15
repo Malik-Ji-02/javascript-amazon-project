@@ -1,7 +1,7 @@
-import {totalCartItems} from '../../data/cart.js';
+import {cart} from '../../data/cart-class.js';
 
 export function checkoutHeaderLoad(){
-    const totalItems = totalCartItems();
+    const totalItems = cart.totalCartItems();
     const headerHtml = `Checkout (<a class="return-to-home-link js-top-cart-items-count"
         href="amazon.html">${totalItems} items</a>)`;
 

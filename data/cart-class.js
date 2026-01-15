@@ -106,4 +106,4 @@ class Cart {
     }
 }
 
-const cart = new Cart('cart');
+ export const cart = new Cart('cart');
