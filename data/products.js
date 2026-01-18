@@ -96,25 +96,45 @@ class Appliance extends Product{
 
 //! Here Products array is created from the backend which takes some time to load then works so remember to always load the functions in it in which you want to use the product array.
 export let products = [];
-export function loadProducts(fun){
-  let xhr = new XMLHttpRequest();
 
-  xhr.addEventListener('load',() => {  //? used to get response once its loaded from the backend.
-    products = JSON.parse(xhr.response).map((productDetails)=> { //* Used map function to go through each element of the array and then perform some function and return a new array and it is also stored in the product variable which is created earlier.
+//? Shorter way to call backend using fetch.
+export function loadProductsFetch(){
+  const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
+    return response.json();
+  }).then((productsData) => {
+    products = productsData.map((productDetails)=> { 
       if (productDetails.type === 'clothing'){
-        return new Clothing(productDetails); //* Here it calls the clothing class and make a object from it and then stores in the products array.
+        return new Clothing(productDetails);
       } else if (productDetails.type === 'appliance') {
-        return new Appliance(productDetails); //* Same here but creates a new Applicance object ------------
+        return new Appliance(productDetails);
       } else{
-        return new Product(productDetails); //* Same here but creates the main product object --------------
+        return new Product(productDetails);
       }
     });
-    fun(); //? Here the function is loaded which is going to take the product array because sending and coming of response takes time so we need to call the function again once the response is loaded to the page.
   });
-
-  xhr.open('GET', 'https://supersimplebackend.dev/products');  //? Sending message to the backend of SuperSimpleDev
-  xhr.send();  //? Message sent to the backend
+  return promise;
 }
+
+//? way to call backend using XML creating a new XML.
+// export function loadProducts(fun){
+//   let xhr = new XMLHttpRequest();
+
+//   xhr.addEventListener('load',() => {  //? used to get response once its loaded from the backend.
+//     products = JSON.parse(xhr.response).map((productDetails)=> { //* Used map function to go through each element of the array and then perform some function and return a new array and it is also stored in the product variable which is created earlier.
+//       if (productDetails.type === 'clothing'){
+//         return new Clothing(productDetails); //* Here it calls the clothing class and make a object from it and then stores in the products array.
+//       } else if (productDetails.type === 'appliance') {
+//         return new Appliance(productDetails); //* Same here but creates a new Applicance object ------------
+//       } else{
+//         return new Product(productDetails); //* Same here but creates the main product object --------------
+//       }
+//     });
+//     fun(); //? Here the function is loaded which is going to take the product array because sending and coming of response takes time so we need to call the function again once the response is loaded to the page.
+//   });
+
+//   xhr.open('GET', 'https://supersimplebackend.dev/products');  //? Sending message to the backend of SuperSimpleDev
+//   xhr.send();  //? Message sent to the backend
+// }
 
 //! Here the products array was created which constains all the info for the product class --------------
 // export const products = [
