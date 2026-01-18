@@ -1,12 +1,23 @@
+//todo Imported statements from other files.
 import {cart} from '../data/cart-class.js';
 import {products, loadProductsFetch} from '../data/products.js';
 
-loadProductsFetch().then(()=>{
+//! Using Async-Await.
+async function loadPage(){
+  await loadProductsFetch();
+
   renderProductsHTML();
-});
+}
+loadPage();
+
+//! Using Promises and Fetch for backend.
+// loadProductsFetch().then(()=>{
+//   renderProductsHTML();
+// });
 
 let productsHTML = '';
 
+//! Making a function to render the whole html of the page.
 function renderProductsHTML(){
   products.forEach( (product) => {
       productsHTML += `

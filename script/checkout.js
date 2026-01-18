@@ -6,12 +6,22 @@ import {loadProductsFetch} from "../data/products.js";
 // import '../data/car.js';
 // import '../data/backendPractice.js';
 
-loadProductsFetch().then(() => {
+//! Using Async-Await.
+async function loadPage(){
+    await loadProductsFetch();
+
     renderOrderSummary();
     renderPaymentSummary();
-});
+}
+loadPage();
 
+//! Using Fetch with the promises.
+// loadProductsFetch().then(() => {
+//     renderOrderSummary();
+//     renderPaymentSummary();
+// });
 
+//! Using Promises.
 // new Promise((resolve) => {
 //     loadProducts(()=>{
 //         resolve();
