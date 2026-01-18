@@ -1,3 +1,5 @@
+//? Initializing the delivery options like its id, date, and the
+//? price in cents that it will cost for delivery --------------
 export const deliveryOptions = [
     {
         id: '1',
@@ -16,6 +18,7 @@ export const deliveryOptions = [
     }
 ];
 
+//? Here we are getting the full deliveryOptions by his id -----
 export function getDeliveryOption(deliveryOptionId){
     let deliveryOption;
 

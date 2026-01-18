@@ -1,6 +1,7 @@
+//// IMPORTING SECTION FOR IMPORTING OTHER FUNCTIONS FORM OTHER FILES ----------------------------------
 import { formatCurrency } from "../script/utils/money.js";
 
-
+//? This function returns the function that is matching with the provided id ---------------------------
 export function getProduct(productId){
   let matchingItem;
 
@@ -13,6 +14,7 @@ export function getProduct(productId){
   return matchingItem;
 }
 
+//! Main PRODUCT Class that consist of all the functions and objects into it ---------------------------
 class Product {
   id;
   image;
@@ -21,6 +23,7 @@ class Product {
   priceCents;
   keywords;
 
+  //? Constructor that will run after the new class is declared ----------------------------------------
   constructor(productDetails){
     this.id = productDetails.id;
     this.image = productDetails.image;
@@ -30,27 +33,33 @@ class Product {
     this.keywords = productDetails.keywords;
   }
 
+  //? Returns the imgae for the stars ------------------------------------------------------------------
   getStarsUrl(){
     return `images/ratings/rating-${this.rating.stars * 10}.png`;
   }
 
+  //? Returns the Price in dollars for the product -----------------------------------------------------
   getPrice(){
     return `$${formatCurrency(this.priceCents)}`;
   }
 
+  //? Extra Info function just overriden by the childrens, here it is just initialized -----------------
   extraInfo(){
     return '';
   }
 }
 
+//! CLOTHING class is declared here which is also a child class of product class -----------------------
 class Clothing extends Product{
   sizeChartLink;
 
+  //? Constructor for the child class ------------------------------------------------------------------
   constructor(productDetails){
-    super(productDetails);
+    super(productDetails); //* Here it calls the parent class same function ----------------------------
     this.sizeChartLink = productDetails.sizeChartLink;
   }
   
+  //? The Extra Info function for the children clothing is overriden here ------------------------------
   extraInfo(){
     return `
       <a href='${this.sizeChartLink}' target="_blank">
@@ -60,16 +69,19 @@ class Clothing extends Product{
   }
 }
 
+//! APPLIANCE class which is also the child class of product class -------------------------------------
 class Appliance extends Product{
   instructionsLink;
   warrantyLink;
 
+  //? Constructor for the child class ------------------------------------------------------------------
   constructor(productDetails){
-    super(productDetails);
+    super(productDetails); //* Here it calls the parent class same function ----------------------------
     this.instructionsLink = productDetails.instructionsLink;
     this.warrantyLink = productDetails.warrantyLink;
   }
 
+  //? Extra Info function is overriden here also by another child of product class ---------------------
   extraInfo(){
     return `
       <a href="${this.instructionsLink}" target="_blank">
@@ -82,7 +94,7 @@ class Appliance extends Product{
   }
 }
 
-
+//! Here the products array is created which constains all the info for the product class --------------
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -790,12 +802,15 @@ export const products = [
       "black"
     ]
   }
-].map((productDetails)=> {
+].map((productDetails)=> { //* Used map function to go through each element of the array and then perform some function and return a new array and it is also stored in the product variable which is created earlier.
   if (productDetails.type === 'clothing'){
-    return new Clothing(productDetails);
+    return new Clothing(productDetails); //* Here it calls the clothing class and make a object from it and then stores in the products array.
   } else if (productDetails.type === 'appliance') {
-    return new Appliance(productDetails);
+    return new Appliance(productDetails); //* Same here but creates a new Applicance object ------------
   } else{
-    return new Product(productDetails);
+    return new Product(productDetails); //* Same here but creates the main product object --------------
   }
 });
+
+//// FILE ENDS HERE NO OTHER INFO ABOUT THE PROJECT IF YOU READ IT CONGRATULATION YOU JUST GONE THROUGHT
+//// MY 10 TO 15 DAYS WORK, YOU CAN CHECK OUT MORE FILES -----------------------------------------------
