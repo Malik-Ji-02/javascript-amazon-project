@@ -111,7 +111,11 @@ export function loadProductsFetch(){
         return new Product(productDetails);
       }
     });
+    
+  }).catch((error)=>{ //? handeling exception while using fetch to load the backend.
+    console.log(`Alert! An unexpected error caught: ${error}`);
   });
+
   return promise;
 }
 
@@ -132,7 +136,11 @@ export function loadProductsFetch(){
 //     fun(); //? Here the function is loaded which is going to take the product array because sending and coming of response takes time so we need to call the function again once the response is loaded to the page.
 //   });
 
-//   xhr.open('GET', 'https://supersimplebackend.dev/products');  //? Sending message to the backend of SuperSimpleDev
+//   xhr.addEventListener('error', (error)=>{ //? Error handeling using XML to call backend.
+//     console.log(`Alert! An unexpected error caught: ${error}`);
+//   })
+
+//   xhr.open('GET', 'https://error.supersimplebackend.dev/products');  //? Sending message to the backend of SuperSimpleDev
 //   xhr.send();  //? Message sent to the backend
 // }
 

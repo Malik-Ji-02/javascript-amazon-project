@@ -4,8 +4,12 @@ import {products, loadProductsFetch} from '../data/products.js';
 
 //! Using Async-Await.
 async function loadPage(){
-  await loadProductsFetch();
-
+  //? Handeling error in Async using try and catch.
+  try{
+    await loadProductsFetch();
+  } catch (error){
+    console.log(`Alert! An unexpected error caught: ${error}`);
+  }
   renderProductsHTML();
 }
 loadPage();

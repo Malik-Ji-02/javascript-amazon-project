@@ -8,7 +8,13 @@ import {loadProductsFetch} from "../data/products.js";
 
 //! Using Async-Await.
 async function loadPage(){
-    await loadProductsFetch();
+
+    //? Using Try and Catch in the Async-Await to catch any unexpected error while we can use try and catch even without using Async and Await in the normal program.
+    try{
+        await loadProductsFetch();
+    }catch(error){
+        console.log(`Alert! An unexpected error caught: ${error}`);
+    }
 
     renderOrderSummary();
     renderPaymentSummary();
