@@ -77,4 +77,16 @@ function loadTrackingHtml(){
     </div>
   `;
   document.querySelector('.js-order-tracking').innerHTML = html;
+
+  updateCartQuantity();
+
+  function updateCartQuantity(){
+    let cartQuantity = 0;
+
+    cart.cartItems.forEach( (item)=>{
+      cartQuantity += (item.quantity);
+    } );
+
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+  }
 };
