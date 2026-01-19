@@ -76,6 +76,8 @@ export function renderPaymentSummary(){
         const order = await response.json();
         addOrder(order);
 
+        resetCart();
+
       } catch (error) {
         console.log("Unexpected Error Caught: plz check ur application code!");
       }
@@ -83,4 +85,8 @@ export function renderPaymentSummary(){
       window.location.href = "orders.html";
 
     });
+    function resetCart(){
+      cart.cartItems = [];
+      cart.saveToCart();
+    }
 }

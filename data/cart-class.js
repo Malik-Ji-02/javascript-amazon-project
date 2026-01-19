@@ -54,7 +54,11 @@ class Cart {
         } );
 
         if(matchingItem){
+            if (quantitySelected){
             matchingItem.quantity += quantitySelected;
+            } else{
+                matchingItem.quantity += 1;
+            }
         } else {
             this.cartItems.push( {
                 productId: productId,
