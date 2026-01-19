@@ -96,7 +96,7 @@ function loadOrdersHtml(){
         </div>
 
         <div class="product-actions">
-          <a href="tracking.html">
+          <a href="tracking.html?orderId=${order.id}&productId=${product.productId}">
             <button class="track-package-button button-secondary">
               Track package
             </button>
